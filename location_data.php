@@ -19,6 +19,8 @@ $trip_date = "20291215";
 // echo $url;
 // echo $comment;
 
+//config.phpを呼び出す
+require_once('../../../config.php');
 
 //2. DB接続します
 //tryは頑張ってやってみて、ダメだったらcatchして終了させます
@@ -26,7 +28,8 @@ try {
   //ID:'root', Password: xamppは 空白 ''
   //mampの場合はID root, PWD : root
   //Excelで言うところのファイルの指定
-  $pdo = new PDO('mysql:dbname=location_data;charset=utf8;host=localhost','root','');
+  $server_info = 'mysql:dbname=' . $db_name . ';charset=utf8;host=' . $db_host;
+  $pdo = new PDO($server_info, $db_id, $db_pw);
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
 }
